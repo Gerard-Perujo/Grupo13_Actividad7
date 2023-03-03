@@ -3,7 +3,8 @@ package modelo.javabeans;
 import java.util.Objects;
 
 /**
- * 
+ * Creo la clase Departamentos que tendra unos atributos que hacen referencia al Departamento en la base de datos
+ *
  * @author Gerard_Perujo
  *
  */
@@ -21,6 +22,13 @@ public class Departamentos {
 
 
 
+	/**
+	 * Contructor con todos los atributos de la Clase departamento
+	 * 
+	 * @param idDepar: Es el id del Departamento
+	 * @param nombre: Es el nombre del Departamento
+	 * @param direccion: Es la direccion donde se encuentra el Departamento
+	 */
 	public Departamentos(int idDepar, String nombre, String direccion) {
 		super();
 		this.idDepar = idDepar;
@@ -29,6 +37,9 @@ public class Departamentos {
 	}
 
 
+	/**
+	 * Creamos los getters and setters
+	 */
 	public int getIdDepar() {
 		return idDepar;
 	}
@@ -59,6 +70,9 @@ public class Departamentos {
 	}
 
 
+	/**
+	 * Creamos el metodo toString de Departamentos
+	 */
 	@Override
 	public String toString() {
 		return "Departamentos [idDepar=" + idDepar + ", nombre=" + nombre + ", direccion=" + direccion + "]";
@@ -67,6 +81,11 @@ public class Departamentos {
 
 
 
+	/**
+	 * Creamos el hascode de Departamento cogiendo el idDepar ya que es el
+	 * atributo que hace referencia a la PK en la base de datos, y con el hascode 
+	 * podremos llamar a esta clase desde otra
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(idDepar);

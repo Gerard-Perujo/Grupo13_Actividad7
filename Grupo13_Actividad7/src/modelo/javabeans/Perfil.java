@@ -2,6 +2,13 @@ package modelo.javabeans;
 
 import java.util.Objects;
 
+
+/**
+ * Creamos la classe Perfil con los atributos que tiene la base de datos Perfil
+ * 
+ * @author Gerard_Perujo
+ *
+ */
 public class Perfil {
 	
 	private int idPerfil;
@@ -13,6 +20,13 @@ public class Perfil {
 	}
 
 
+	
+	/**
+	 * Constructor con todo de la clase Perfil
+	 * 
+	 * @param idPerfil: Es el id de Perfil
+	 * @param nombre: Es el nombre del Perfil
+	 */
 	public Perfil(int idPerfil, String nombre) {
 		super();
 		this.idPerfil = idPerfil;
@@ -20,6 +34,9 @@ public class Perfil {
 	}
 
 
+	/**
+	 * Creamos los getters and setters
+	 */
 	public int getIdPerfil() {
 		return idPerfil;
 	}
@@ -37,12 +54,19 @@ public class Perfil {
 	}
 
 
+	/**
+	 * Creamos el metodo toString con todos los atributos de la clase perfil
+	 */
 	@Override
 	public String toString() {
 		return "Perfil [idPerfil=" + idPerfil + ", nombre=" + nombre + "]";
 	}
 
 
+	/**
+	 * Creamos el hascode con el atributo idPerfil ya que es la PK en la base de
+	 * datos y con esto podremos llamar a esta clase desde otra.
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(idPerfil);

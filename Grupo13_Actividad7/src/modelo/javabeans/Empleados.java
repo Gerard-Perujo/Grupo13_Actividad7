@@ -2,6 +2,14 @@ package modelo.javabeans;
 
 import java.sql.Date;
 
+
+/**
+ * Creo la clase Empleado que contiene todos los atributos que hacen referenciua al empleado de la base de datos
+ * y 2 objetos de tipo privado que hacen referencia a las clases Perfil y departamento
+ * 
+ * @author Gerard_Perujo
+ *
+ */
 public class Empleados {
 	
 	private int idEmpl;
@@ -21,6 +29,20 @@ public class Empleados {
 	}
 
 
+	
+	/**
+	 * Creo un costructor con todos los atributos de Empleados
+	 * @param idEmpl: Hace referencia al id_ del Empleado
+	 * @param nombre: Hace referencia al Nombre del Empleado
+	 * @param apellidos: Hace referencia a los apellidos del Empleado
+	 * @param email: Hace referencia al Email del Empleado
+	 * @param password: Es la password que tiene el Empleado
+	 * @param salario: El Salario bruto que tiene el Empleado
+	 * @param fechaIngreso: La Fecha de contratacion del Empleado
+	 * @param fechaNacimiento: La Fecha de nacimiento del Empleado
+	 * @param perfil: Este atributo hace referencia a la Clase Perfil
+	 * @param departamentos: Este atributo hace referencia a la Clase Departamentos
+	 */
 	public Empleados(int idEmpl, String nombre, String apellidos, String email, String password, double salario,
 			Date fechaIngreso, Date fechaNacimiento, Perfil perfil, Departamentos departamentos) {
 		super();
@@ -36,6 +58,9 @@ public class Empleados {
 		this.departamentos = departamentos;
 	}
 
+	/**
+	 * Creamos todos los getters and setters de la Classe
+	 */
 
 	public int getIdEmpl() {
 		return idEmpl;
@@ -137,23 +162,49 @@ public class Empleados {
 	}
 
 
+	/**
+	 * Creamos el metodo toString con los 2 atributos que hacen referencia a las Clases Perfil y Departamentos
+	 */
 	@Override
 	public String toString() {
-		return "Empleados [idEmpl=" + idEmpl + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
-				+ ", password=" + password + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso
-				+ ", fechaNacimiento=" + fechaNacimiento + ", perfil=" + perfil + ", departamentos=" + departamentos
+		return "Empleados [idEmpl = " + idEmpl + ", nombre = " + nombre + ", apellidos = " + apellidos + ", email = " + email
+				+ ", password = " + password + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso
+				+ ", fechaNacimiento = " + fechaNacimiento + ", perfil = " + perfil + ", departamentos = " + departamentos
 				+ "]";
 	}
 	
+	
+	/**
+	 * Este metodo te calcula el SalarioBruto del Empleado
+	 * 
+	 * @return devuelve un double con el Salario Bruto
+	 */
 	public double salarioBruto() {
 		return salario;
 	}
 	
 	
+	/**
+	 * Te calcula el salario mensual del Empleado a partir de los meses introducidos
+	 * 
+	 * @param meses: Es un numero entero que hace referencia a los meses por los que
+	 * hay que calcular el salario
+	 * 
+	 * @return despues de dividir el salario por los meses introducidos te devuelve un
+	 * double
+	 */
 	public double salarioMensual(int meses) {
 		return salario/meses;
 	}
 	
+	
+	/**
+	 * Este metodo a partir de un caracter te dice si el Empleado es Hombre o Mujer
+	 * 
+	 * @return si el valor introducido es 'H', te devuelve eres un hombre
+	 * 		   si el valor introducido es 'M', te devuelve eres una mujer
+	 * 		   si el valor introducido no es ni 'M', ni 'H', te devuelve, caracter erroneo
+	 */
 	public String literalSexo() {
 		String sexo = "";
 			switch(sexo){
@@ -171,6 +222,13 @@ public class Empleados {
 			return sexo;
 	}
 	
+	/**
+	 * A partir de un nombre y un apellido te genera el email, cogiendo el primer
+	 * caracter del nombre y el apellido
+	 * 
+	 * @return devuelve el primer caracter del nombre en mayuscuylas y los concatena con
+	 * los apellidos poniendolos en minusculas
+	 */
 	public String obtenerEmail() {
 		String minuscula = apellidos.toLowerCase();
 		char letra = 'c';
@@ -182,6 +240,11 @@ public class Empleados {
 		return email;
 	}
 	
+	/**
+	 * Te saca el nombre completo del Empleado con su nombre y apellido
+	 * 
+	 * @return concatena el nombre con el apellido
+	 */
 	public String nombreCompleto() {
 		return "Tu nombre completo es: " + nombre + " " + apellidos;
 		
