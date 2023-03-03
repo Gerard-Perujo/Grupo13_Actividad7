@@ -15,6 +15,7 @@ public class Empleados {
 	private int idEmpl;
 	private String nombre;
 	private String apellidos;
+	private String genero;
 	private String email;
 	private String password;
 	private double salario;
@@ -43,12 +44,14 @@ public class Empleados {
 	 * @param perfil: Este atributo hace referencia a la Clase Perfil
 	 * @param departamentos: Este atributo hace referencia a la Clase Departamentos
 	 */
-	public Empleados(int idEmpl, String nombre, String apellidos, String email, String password, double salario,
-			Date fechaIngreso, Date fechaNacimiento, Perfil perfil, Departamentos departamentos) {
+
+	public Empleados(int idEmpl, String nombre, String apellidos, String genero, String email, String password,
+			double salario, Date fechaIngreso, Date fechaNacimiento, Perfil perfil, Departamentos departamentos) {
 		super();
 		this.idEmpl = idEmpl;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
+		this.genero = genero;
 		this.email = email;
 		this.password = password;
 		this.salario = salario;
@@ -162,17 +165,32 @@ public class Empleados {
 	}
 
 
+	public String getGenero() {
+		return genero;
+	}
+
+
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+
+
 	/**
 	 * Creamos el metodo toString con los 2 atributos que hacen referencia a las Clases Perfil y Departamentos
 	 */
+	
+	
 	@Override
 	public String toString() {
-		return "Empleados [idEmpl = " + idEmpl + ", nombre = " + nombre + ", apellidos = " + apellidos + ", email = " + email
-				+ ", password = " + password + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso
-				+ ", fechaNacimiento = " + fechaNacimiento + ", perfil = " + perfil + ", departamentos = " + departamentos
-				+ "]";
+		return "Empleados [idEmpl=" + idEmpl + ", nombre=" + nombre + ", apellidos=" + apellidos + ", genero=" + genero
+				+ ", email=" + email + ", password=" + password + ", salario=" + salario + ", fechaIngreso="
+				+ fechaIngreso + ", fechaNacimiento=" + fechaNacimiento + ", perfil=" + perfil + ", departamentos="
+				+ departamentos + "]";
 	}
-	
+
+
 	
 	/**
 	 * Este metodo te calcula el SalarioBruto del Empleado
@@ -183,7 +201,7 @@ public class Empleados {
 		return salario;
 	}
 	
-	
+
 	/**
 	 * Te calcula el salario mensual del Empleado a partir de los meses introducidos
 	 * 

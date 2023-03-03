@@ -11,6 +11,7 @@ public interface EmpleadoDao {
 	Empleados buscarUno(int idEmpl);
 	int modificarEmpleado(Empleados empleado);
 	int eliminarEmpleado(int idEmpl);
+	List<Empleados> buscarTodos();
 	List<Empleados> empleadoByDepartamento(int idDepar);
 	List<Empleados> empleadosBySexo(char sexo);
 	List<Empleados> empleadosByApellido(String subcadena);

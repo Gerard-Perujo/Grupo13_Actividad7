@@ -13,6 +13,7 @@ public class Perfil {
 	
 	private int idPerfil;
 	private String nombre;
+	private double precio_hora;
 	
 
 	public Perfil() {
@@ -27,19 +28,23 @@ public class Perfil {
 	 * @param idPerfil: Es el id de Perfil
 	 * @param nombre: Es el nombre del Perfil
 	 */
-	public Perfil(int idPerfil, String nombre) {
+	
+
+	public Perfil(int idPerfil, String nombre, double precio_hora) {
 		super();
 		this.idPerfil = idPerfil;
 		this.nombre = nombre;
+		this.precio_hora = precio_hora;
 	}
-
 
 	/**
 	 * Creamos los getters and setters
+	 * @param i 
 	 */
 	public int getIdPerfil() {
 		return idPerfil;
 	}
+
 
 	public void setIdPerfil(int idPerfil) {
 		this.idPerfil = idPerfil;
@@ -53,15 +58,26 @@ public class Perfil {
 		this.nombre = nombre;
 	}
 
+	public double getPrecio_hora() {
+		return precio_hora;
+	}
+
+
+
+	public void setPrecio_hora(double precio_hora) {
+		this.precio_hora = precio_hora;
+	}
+
+
 
 	/**
 	 * Creamos el metodo toString con todos los atributos de la clase perfil
 	 */
+	
 	@Override
 	public String toString() {
-		return "Perfil [idPerfil=" + idPerfil + ", nombre=" + nombre + "]";
+		return "Perfil [idPerfil=" + idPerfil + ", nombre=" + nombre + ", precio_hora=" + precio_hora + "]";
 	}
-
 
 	/**
 	 * Creamos el hascode con el atributo idPerfil ya que es la PK en la base de
@@ -71,6 +87,7 @@ public class Perfil {
 	public int hashCode() {
 		return Objects.hash(idPerfil);
 	}
+
 
 
 	@Override
