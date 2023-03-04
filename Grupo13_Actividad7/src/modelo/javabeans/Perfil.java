@@ -76,7 +76,7 @@ public class Perfil {
 	
 	@Override
 	public String toString() {
-		return "Perfil [idPerfil=" + idPerfil + ", nombre=" + nombre + ", precio_hora=" + precio_hora + "]";
+		return "Perfil [idPerfil = " + idPerfil + "]" + ", [nombre = " + nombre + "]"+  ", [precio_hora = " + precio_hora + "]";
 	}
 
 	/**

@@ -54,7 +54,7 @@ public class PerfilDaoImplMy8 extends AbstractConexionMy8 implements PerfilDao{
 	 */
 	@Override
 	public Perfil buscarUno(int idPerfil) {
-		sql = "select from perfil where id_perfil = ?";
+		sql = "select* from perfiles where id_perfil = ?";
 		
 		
 		try {
@@ -76,14 +76,15 @@ public class PerfilDaoImplMy8 extends AbstractConexionMy8 implements PerfilDao{
 	 */
 	@Override
 	public int modificarPerfil(Perfil perfil) {
-		sql = "update from perfil set id_perfil = ?, set nombre = ?, set precio_hora = ?";
+		sql = "update perfiles set nombre = ?, precio_hora = ? "
+				+ "where id_perfil = ?";
 		
 		filas = 0;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, perf.getIdPerfil());
-			ps.setString(2, perf.getNombre());
-			ps.setDouble(3, perf.getPrecio_hora());
+			ps.setString(1, perf.getNombre());
+			ps.setDouble(2, perf.getPrecio_hora());
+			ps.setInt(3, perf.getIdPerfil());
 			
 			filas = ps.executeUpdate();
 		} catch (SQLException e) {

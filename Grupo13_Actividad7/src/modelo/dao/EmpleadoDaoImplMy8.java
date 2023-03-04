@@ -38,17 +38,17 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		filas = 0;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, empl.getIdEmpl());
-			ps.setString(2, empl.getNombre());
-			ps.setString(3, empl.getApellidos());
-			ps.setString(4,empl.getGenero());
-			ps.setString(5, empl.getEmail());
-			ps.setString(6, empl.getPassword());
-			ps.setDouble(7, empl.getSalario());
-			ps.setDate(8, empl.getFechaIngreso());
-			ps.setDate(9, empl.getFechaNacimiento());
-			ps.setInt(10, empl.getPerfil().getIdPerfil());
-			ps.setInt(11, empl.getDepartamentos().getIdDepar());
+			ps.setInt(1, empleado.getIdEmpl());
+			ps.setString(2, empleado.getNombre());
+			ps.setString(3, empleado.getApellidos());
+			ps.setString(4,empleado.getGenero());
+			ps.setString(5, empleado.getEmail());
+			ps.setString(6, empleado.getPassword());
+			ps.setDouble(7, empleado.getSalario());
+			ps.setDate(8, empleado.getFechaIngreso());
+			ps.setDate(9, empleado.getFechaNacimiento());
+			ps.setInt(10, empleado.getPerfil().getIdPerfil());
+			ps.setInt(11, empleado.getDepartamentos().getIdDepar());
 			
 			filas = ps.executeUpdate();
 			filas = 1;
@@ -61,7 +61,7 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 
 	@Override
 	public Empleados buscarUno(int idEmpl) {
-		sql = "Select from Empleados where id_empl = ?";
+		sql = "Select* from Empleados where id_empl = ?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -81,23 +81,23 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 
 	@Override
 	public int modificarEmpleado(Empleados empleado) {
-		sql = "Update form Empleados set id_empl =?, nombre = ?, apellidos = ?, genero = ?, email = ?"
-			+ "	salario = ?, fecha_ingreso = ?, fecha_nacimiento = ?, id_perfil = ?, id_depar = ? ";
+		sql = "Update empleados set nombre = ?, apellidos = ?, genero = ?, email = ?, salario = ?, password = ?, fecha_ingreso = ?, fecha_nacimiento = ?, id_perfil = ?, id_depar = ? where id_empl = ?";
+			
 		
 		filas = 0;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, empleado.getIdEmpl());
-			ps.setString(2, empleado.getNombre());
-			ps.setString(3, empleado.getApellidos());
-			ps.setString(4, empleado.getGenero());
-			ps.setString(5, empleado.getEmail());
-			ps.setDouble(6, empleado.getSalario());
-			ps.setString(7, empleado.getPassword());
-			ps.setDate(8, empleado.getFechaIngreso());
-			ps.setDate(9, empleado.getFechaNacimiento());
-			ps.setInt(10, empleado.getPerfil().getIdPerfil());
-			ps.setInt(11, empleado.getDepartamentos().getIdDepar());
+			ps.setString(1, empleado.getNombre());
+			ps.setString(2, empleado.getApellidos());
+			ps.setString(3, empleado.getGenero());
+			ps.setString(4, empleado.getEmail());
+			ps.setDouble(5, empleado.getSalario());
+			ps.setString(6, empleado.getPassword());
+			ps.setDate(7, empleado.getFechaIngreso());
+			ps.setDate(8, empleado.getFechaNacimiento());
+			ps.setInt(9, empleado.getPerfil().getIdPerfil());
+			ps.setInt(10, empleado.getDepartamentos().getIdDepar());
+			ps.setInt(11, empleado.getIdEmpl());
 			
 			filas = ps.executeUpdate();
 		} catch (SQLException e) {
@@ -126,30 +126,34 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 
 	@Override
 	public List<Empleados> buscarTodos() {
-		sql = "select from empleados";
+		sql = "select* from empleados";
 		List<Empleados> lista = new ArrayList<>();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.executeQuery();
 			while (rs.next()) {
+				empl = new Empleados();
 				crearEmpleados(empl);
+				lista.add(empl);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return lista;
 	}
 	
 	@Override
 	public List<Empleados> empleadoByDepartamento(int idDepar) {
-		sql = "Select from Empleados where id_depar = ?";
+		sql = "Select* from Empleados where id_depar = ?";
 		List<Empleados> lista = new ArrayList<>();
+		int depar = 0;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(11, idDepar);
+			ps.setInt(1, idDepar);;
 			rs = ps.executeQuery();
 			while (rs.next())
+				depar = rs.getInt(1);
 				empl = new Empleados();
 				crearEmpleados(empl);
 				lista.add(empl);
@@ -162,49 +166,86 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 
 	@Override
 	public List<Empleados> empleadosBySexo(char sexo) {
-		// TODO Auto-generated method stub
-		return null;
+		sql = "select* from empleados where genero = ?";
+		List<Empleados> lista = new ArrayList<>();
+		
+		String genero = String.valueOf(sexo);
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, genero);
+			rs = ps.executeQuery();
+			while (rs.next())
+				empl = new Empleados();
+				crearEmpleados(empl);
+				
+				lista.add(empl);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lista;
 	}
 
 	@Override
 	public List<Empleados> empleadosByApellido(String subcadena) {
-		// TODO Auto-generated method stub
-		return null;
+		sql = "select* from empleados where apellidos = ?";
+		
+		List<Empleados> lista = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(3, subcadena);
+			rs = ps.executeQuery();
+			
+			while (rs.next())
+				empl = new Empleados();
+				crearEmpleados(empl);
+				
+				lista.add(empl);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
 	}
 
 	@Override
 	public double salarioTotal() {
 		sql = "Select sum(salario) from empleados";
 		
-		filas = 0;
+		double total = 0;
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			
-			filas = 1;
+			if(rs.next())
+				total = rs.getDouble(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return filas;
+		return total;
 	}
 
 	@Override
 	public double salarioTotal(int idDepar) {
 		sql = "select sum(salario) from empleados where id_depar = ?";
 		
-		filas = 0;
+		double total = 0;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(11, idDepar);
+			ps.setInt(1, idDepar);
 			rs = ps.executeQuery();
-			filas = 1;
+			if (rs.next())
+				total = rs.getDouble(1);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return filas;
+		return total;
 	}
 
 	

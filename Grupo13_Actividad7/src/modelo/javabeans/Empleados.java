@@ -145,7 +145,7 @@ public class Empleados {
 	}
 
 
-	public Perfil getPerfil() {
+	public Perfil getPerfil(){
 		return perfil;
 	}
 
@@ -184,9 +184,9 @@ public class Empleados {
 	
 	@Override
 	public String toString() {
-		return "Empleados [idEmpl=" + idEmpl + ", nombre=" + nombre + ", apellidos=" + apellidos + ", genero=" + genero
-				+ ", email=" + email + ", password=" + password + ", salario=" + salario + ", fechaIngreso="
-				+ fechaIngreso + ", fechaNacimiento=" + fechaNacimiento + ", perfil=" + perfil + ", departamentos="
+		return "Empleados [idEmpl = " + idEmpl + "]" + " [nombre = " + nombre + "]" + " [apellidos = " + apellidos + "]" + " [genero = " + genero
+				+ "]" + " [email = " + email + "]" + " [password = " + password + "]" + " [salari o= " + salario + "]" + " [fechaIngreso = "
+				+ fechaIngreso + "]" + " [fechaNacimiento = " + fechaNacimiento + "]" + " [perfil = " + perfil + "]" + " [departamentos = "
 				+ departamentos + "]";
 	}
 

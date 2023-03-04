@@ -50,7 +50,7 @@ public class DepartamentosDaoImplMy8 extends AbstractConexionMy8 implements Depa
 	 */
 	@Override
 	public Departamentos buscarUno(int idDepar) {
-		sql = "select from departamentos where id_depar = ?";
+		sql = "select* from departamentos where id_depar = ?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -73,14 +73,16 @@ public class DepartamentosDaoImplMy8 extends AbstractConexionMy8 implements Depa
 	 */
 	@Override
 	public int modificarDepartamento(Departamentos departamento) {
-		sql = "update from departamentos set id_depar = ?, set nombre = ?, set direccion = ?";
+		sql = "update departamentos set nombre = ?, direccion = ? "
+				+ " where id_depar = ?";
 		
 		filas = 0;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, departamento.getIdDepar());
-			ps.setString(2, departamento.getNombre());
-			ps.setString(3, departamento.getDireccion());
+			
+			ps.setString(1, departamento.getNombre());
+			ps.setString(2, departamento.getDireccion());
+			ps.setInt(3, departamento.getIdDepar());
 			
 			filas = ps.executeUpdate();
 			filas = 1;

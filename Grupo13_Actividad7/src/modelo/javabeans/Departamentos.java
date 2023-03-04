@@ -75,7 +75,7 @@ public class Departamentos {
 	 */
 	@Override
 	public String toString() {
-		return "Departamentos [idDepar=" + idDepar + ", nombre=" + nombre + ", direccion=" + direccion + "]";
+		return "Departamentos [idDepar = " + idDepar + "]" + " [nombre = " + nombre + "]" + " [direccion = " + direccion + "]";
 	}
 
 
