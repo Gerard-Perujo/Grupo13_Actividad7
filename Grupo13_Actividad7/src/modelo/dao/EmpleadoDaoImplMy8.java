@@ -147,9 +147,9 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		List<Empleados> lista = new ArrayList<>();
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.executeQuery();
+			rs = ps.executeQuery();
 			while (rs.next()) {
-				Empleados empl = new Empleados();
+			 empl = new Empleados();
 				crearEmpleados(empl);
 				lista.add(empl);
 			}
