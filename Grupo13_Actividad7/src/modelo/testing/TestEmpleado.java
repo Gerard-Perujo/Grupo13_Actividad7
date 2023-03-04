@@ -13,6 +13,13 @@ import modelo.javabeans.Departamentos;
 import modelo.javabeans.Empleados;
 import modelo.javabeans.Perfil;
 
+
+/**
+ * Creamos la clase testEmpleado para probar todos los metodos del EmpleadoDaoImplMy8
+ * 
+ * @author Gerard_Perujo
+ *
+ */
 public class TestEmpleado {
 
 	public static void main(String[] args) {
