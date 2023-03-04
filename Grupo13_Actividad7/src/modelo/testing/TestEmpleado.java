@@ -78,12 +78,28 @@ public class TestEmpleado {
 		System.out.println("Usamos el metodo empleadoByDepartamento(), pasamos un id del departamento y nos saca los empleados"
 				+ " que tienen ese departamento");
 		
-			for (Empleados ele: empleado.empleadoByDepartamento(4)) {
+			for (Empleados ele: empleado.empleadoByDepartamento(20)) {
 				System.out.println(ele);
 			}
 		System.out.println("====================================================================================");
 			
-			
+		
+		System.out.println("Usamos el metodo empleadosBySexo(), pasamos un caracter y nos saca los empleados que son"
+				+ " del mismo sexo");
+		for(Empleados ele: empleado.empleadosBySexo('M'))
+			System.out.println(ele);
+		System.out.println("====================================================================================");
+		
+		
+		
+		System.out.println("Usamos el metodo empleadoByApellido() pasamos un apellido y nos saca el empleado o los"
+				+ "empleados que tengan ese apellido");
+		for (Empleados ele: empleado.empleadosByApellido("koo"))
+			System.out.println(ele);
+		System.out.println("====================================================================================");
+		
+		
+		
 		System.out.println("Usamos el metodo salarioTotal(), y sumamos todos los salarios dentro de la tabla empleados");
 		System.out.println(empleado.salarioTotal());
 		System.out.println("====================================================================================");

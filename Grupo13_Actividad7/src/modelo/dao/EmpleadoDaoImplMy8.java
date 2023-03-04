@@ -31,6 +31,9 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 	
 
 
+	/**
+	 * Creamos un metodo que nos permite crear un nuevo empleado en la base de datos
+	 */
 	@Override
 	public int crearEmpleado(Empleados empleado) {
 		
@@ -59,6 +62,9 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return filas;
 	}
 
+	/**
+	 * buscamos un empleado en concreto en la base de datos al pasarle su id de empleado
+	 */
 	@Override
 	public Empleados buscarUno(int idEmpl) {
 		sql = "Select* from Empleados where id_empl = ?";
@@ -79,6 +85,10 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return empl;
 	}
 
+	/**
+	 * este metodo permite modificar los datos que que hay en la base de datos de un 
+	 * empleado en concreto
+	 */
 	@Override
 	public int modificarEmpleado(Empleados empleado) {
 		sql = "Update empleados set nombre = ?, apellidos = ?, genero = ?, email = ?, salario = ?, password = ?, fecha_ingreso = ?, fecha_nacimiento = ?, id_perfil = ?, id_depar = ? where id_empl = ?";
@@ -107,6 +117,9 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return filas;
 	}
 
+	/**
+	 * eliminamos un empleado dentro de la base de datos
+	 */
 	@Override
 	public int eliminarEmpleado(int idEmpl) {
 		sql = "delete from Empleados where id_empl = ?";
@@ -124,6 +137,10 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return filas;
 	}
 
+	/**
+	 * con una array recorremos toda la tabla de empleados de la base de datos y sacamos todos los empleados
+	 * que hay
+	 */
 	@Override
 	public List<Empleados> buscarTodos() {
 		sql = "select* from empleados";
@@ -132,10 +149,11 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 			ps = conn.prepareStatement(sql);
 			ps.executeQuery();
 			while (rs.next()) {
-				empl = new Empleados();
+				Empleados empl = new Empleados();
 				crearEmpleados(empl);
 				lista.add(empl);
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -143,20 +161,26 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return lista;
 	}
 	
+	
+	/**
+	 * con una array recorremos toda la tabla empleados que hay en la base de datos
+	 * y sacamos el empleado en concreto pasando el id del empleado
+	 */
 	@Override
 	public List<Empleados> empleadoByDepartamento(int idDepar) {
 		sql = "Select* from Empleados where id_depar = ?";
 		List<Empleados> lista = new ArrayList<>();
-		int depar = 0;
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, idDepar);;
 			rs = ps.executeQuery();
-			while (rs.next())
-				depar = rs.getInt(1);
+			while (rs.next()) {
 				empl = new Empleados();
 				crearEmpleados(empl);
+			
 				lista.add(empl);
+			}
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -164,6 +188,10 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return lista;
 	}
 
+	/**
+	 * con una array recorremos toda la tabla empleados que hay en la base de datos
+	 * y sacamos los empleados que tengan el sexo que le hemos pasado
+	 */
 	@Override
 	public List<Empleados> empleadosBySexo(char sexo) {
 		sql = "select* from empleados where genero = ?";
@@ -174,11 +202,13 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, genero);
 			rs = ps.executeQuery();
-			while (rs.next())
+			while (rs.next()) {
 				empl = new Empleados();
 				crearEmpleados(empl);
 				
 				lista.add(empl);
+			}
+				
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -188,6 +218,10 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return lista;
 	}
 
+	/**
+	 * con una array recorremos toda la tabla empleados de la base de datos 
+	 * y sacamos los empleados que tengan el apellido que le hemos pasado
+	 */
 	@Override
 	public List<Empleados> empleadosByApellido(String subcadena) {
 		sql = "select* from empleados where apellidos = ?";
@@ -196,14 +230,16 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(3, subcadena);
+			ps.setString(1, subcadena);
 			rs = ps.executeQuery();
 			
-			while (rs.next())
+			while (rs.next()) {
 				empl = new Empleados();
 				crearEmpleados(empl);
 				
 				lista.add(empl);
+			}
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -211,6 +247,9 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return lista;
 	}
 
+	/**
+	 * sumamos todos los salarios que hay en la tabla empleados de la base de datos
+	 */
 	@Override
 	public double salarioTotal() {
 		sql = "Select sum(salario) from empleados";
@@ -229,6 +268,10 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 		return total;
 	}
 
+	/**
+	 * sumamos todos los salarios que hay en la tabla empleados de la base de datos
+	 * pasando el id de un departamento
+	 */
 	@Override
 	public double salarioTotal(int idDepar) {
 		sql = "select sum(salario) from empleados where id_depar = ?";
@@ -256,17 +299,17 @@ public class EmpleadoDaoImplMy8 extends AbstractConexionMy8 implements EmpleadoD
 	 */
 	public void crearEmpleados(Empleados empleado) throws SQLException{
 		
-		empleado.setIdEmpl(rs.getInt(1));
-		empleado.setNombre(rs.getString(2));
-		empleado.setApellidos(rs.getString(3));
-		empleado.setGenero(rs.getString(4));
-		empleado.setEmail(rs.getString(5));
-		empleado.setPassword(rs.getString(6));
-		empleado.setSalario(rs.getDouble(7));
-		empleado.setFechaIngreso(rs.getDate(8));
-		empleado.setFechaNacimiento(rs.getDate(9));
-		empleado.setPerfil(perf.buscarUno(rs.getInt(10)));
-		empleado.setDepartamentos(depar.buscarUno(rs.getInt(11)));
+		empleado.setIdEmpl(rs.getInt("id_empl"));
+		empleado.setNombre(rs.getString("nombre"));
+		empleado.setApellidos(rs.getString("apellidos"));
+		empleado.setGenero(rs.getString("genero"));
+		empleado.setEmail(rs.getString("email"));
+		empleado.setPassword(rs.getString("password"));
+		empleado.setSalario(rs.getDouble("salario"));
+		empleado.setFechaIngreso(rs.getDate("fecha_ingreso"));
+		empleado.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+		empleado.setPerfil(perf.buscarUno(rs.getInt("id_perfil")));
+		empleado.setDepartamentos(depar.buscarUno(rs.getInt("id_depar")));
 		
 	}
 	
