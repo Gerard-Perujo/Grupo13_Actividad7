@@ -1,8 +1,8 @@
-package testing;
+package modelo.testing;
 
-import Dao.ProyectoDao;
-import Dao.ProyectoDaoImplMy8;
-import javabeans.Proyecto;
+import modelo.dao.ProyectoDao;
+import modelo.dao.ProyectoDaoImplMy8;
+import modelo.javabeans.Proyecto;
 
 public class TestProyecto {
 

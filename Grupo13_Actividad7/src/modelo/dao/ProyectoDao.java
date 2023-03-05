@@ -1,8 +1,8 @@
-package Dao;
+package modelo.dao;
 
 import java.util.List;
 
-import javabeans.Proyecto;
+import modelo.javabeans.Proyecto;
 
 public interface ProyectoDao {
 	//Se realiza el CRUD y el buscarTodos.

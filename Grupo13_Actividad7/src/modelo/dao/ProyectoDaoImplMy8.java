@@ -1,12 +1,12 @@
-package Dao;
+package modelo.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javabeans.Proyecto;
+import modelo.javabeans.Proyecto;
 
-public class ProyectoDaoImplMy8 extends AbstractDaoMy8 implements ProyectoDao{
+public class ProyectoDaoImplMy8 extends AbstractConexionMy8 implements ProyectoDao{
 
 	@Override
 	public int altaProyecto(Proyecto proyecto) {
@@ -65,7 +65,6 @@ public class ProyectoDaoImplMy8 extends AbstractDaoMy8 implements ProyectoDao{
 				+ "where id_proyecto =?";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(11, proyecto.getIdProyecto());
 			ps.setString(1, proyecto.getDescripcion());
 			ps.setDate(2, proyecto.getFechaInicio());
 			ps.setDate(3, proyecto.getFechaFinPrevisto());
@@ -76,6 +75,7 @@ public class ProyectoDaoImplMy8 extends AbstractDaoMy8 implements ProyectoDao{
 			ps.setString(8, proyecto.getEstado());
 			ps.setInt(9, proyecto.getJefeProyecto());
 			ps.setString(10, proyecto.getCif());
+			ps.setString(11, proyecto.getIdProyecto());
 			
 			filas = ps.executeUpdate();
 			filas = 1;
